@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.comboBoxDataSurce = new System.Windows.Forms.ComboBox();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.panelStaticSettings = new System.Windows.Forms.Panel();
@@ -40,14 +41,17 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.adapterListSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox.SuspendLayout();
             this.panelStaticSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxDataSurce
             // 
             this.comboBoxDataSurce.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDataSurce.DataSource = this.adapterListSourceBindingSource;
             this.comboBoxDataSurce.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDataSurce.FormattingEnabled = true;
             this.comboBoxDataSurce.Location = new System.Drawing.Point(77, 3);
@@ -171,6 +175,10 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Key column:";
             // 
+            // adapterListSourceBindingSource
+            // 
+            this.adapterListSourceBindingSource.DataSource = typeof(Paladyne_differ.AdapterListSource);
+            // 
             // DataSourceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,6 +191,7 @@
             this.groupBox.ResumeLayout(false);
             this.panelStaticSettings.ResumeLayout(false);
             this.panelStaticSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +211,6 @@
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource adapterListSourceBindingSource;
     }
 }
