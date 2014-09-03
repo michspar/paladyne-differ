@@ -22,7 +22,44 @@ namespace Paladyne_differ
             listBoxAll.Width = listBoxComparing.Width = ((sender as Panel).Width - 62) / 2;
             listBoxComparing.Left = listBoxAll.Left + listBoxAll.Width + 55;
             buttonLeft.Left = buttonRight.Left = listBoxAll.Left + listBoxAll.Width + 6;
-            listBoxAll.Height =listBoxComparing.Height = (sender as Panel).Height - listBoxAll.Top;
+            listBoxAll.Height = listBoxComparing.Height = (sender as Panel).Height - listBoxAll.Top;
+        }
+
+        private void comboBoxDataSurce_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateVariablePanel(sender);
+        }
+
+        private void UpdateVariablePanel(object sender)
+        {
+            if (!((sender as ComboBox).SelectedValue is IDataAdapter))
+                return;
+
+            var adapter = (sender as ComboBox).SelectedValue as IDataAdapter;
+            var ctrl = adapter.GetSettingsControl();
+
+            ctrl.Width = panelVariableSettings.Width;
+            panelVariableSettings.Height = ctrl.Height;
+
+            panelVariableSettings.Controls.Clear();
+            panelVariableSettings.Controls.Add(ctrl);
+            groupBox.Text = adapter.ToString() + " data source settings";
+
+            ctrl.Dock = DockStyle.Fill;
+            adapter.SettingsApplied += adapter_SettingsApplied;
+        }
+
+        void adapter_SettingsApplied(object sender, DataTableEventArgs e)
+        {
+            var Columns = e.Table.Columns.OfType<DataColumn>().Select(col => col.Caption);
+
+            comboBoxKeyColumn.DataSource = Columns.ToArray();
+            listBoxAll.DataSource = Columns.ToArray();
+        }
+
+        private void DataSourceControl_Load(object sender, EventArgs e)
+        {
+            UpdateVariablePanel(comboBoxDataSurce);
         }
     }
 }

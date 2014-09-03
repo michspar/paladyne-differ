@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MSSQLConnectionSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MSSQLConnectionSettings.Designer.cs">
+      <DependentUpon>MSSQLConnectionSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MSSqlDataAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +55,11 @@
       <Project>{2e119540-9f5f-4f13-9f3e-9e6af27cafb2}</Project>
       <Name>Paladyne_differ</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MSSQLConnectionSettings.resx">
+      <DependentUpon>MSSQLConnectionSettings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

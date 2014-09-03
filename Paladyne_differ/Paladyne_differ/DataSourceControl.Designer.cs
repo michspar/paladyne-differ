@@ -30,21 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.comboBoxDataSurce = new System.Windows.Forms.ComboBox();
+            this.adapterListSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.panelStaticSettings = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonLeft = new System.Windows.Forms.Button();
+            this.buttonRight = new System.Windows.Forms.Button();
             this.listBoxAll = new System.Windows.Forms.ListBox();
             this.listBoxComparing = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxKeyColumn = new System.Windows.Forms.ComboBox();
             this.panelVariableSettings = new System.Windows.Forms.Panel();
-            this.buttonLeft = new System.Windows.Forms.Button();
-            this.buttonRight = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.adapterListSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).BeginInit();
             this.groupBox.SuspendLayout();
             this.panelStaticSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxDataSurce
@@ -58,6 +58,11 @@
             this.comboBoxDataSurce.Name = "comboBoxDataSurce";
             this.comboBoxDataSurce.Size = new System.Drawing.Size(316, 21);
             this.comboBoxDataSurce.TabIndex = 1;
+            this.comboBoxDataSurce.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataSurce_SelectedIndexChanged);
+            // 
+            // adapterListSourceBindingSource
+            // 
+            this.adapterListSourceBindingSource.DataSource = typeof(Paladyne_differ.AdapterListSource);
             // 
             // groupBox
             // 
@@ -81,13 +86,42 @@
             this.panelStaticSettings.Controls.Add(this.listBoxAll);
             this.panelStaticSettings.Controls.Add(this.listBoxComparing);
             this.panelStaticSettings.Controls.Add(this.label1);
-            this.panelStaticSettings.Controls.Add(this.comboBox1);
+            this.panelStaticSettings.Controls.Add(this.comboBoxKeyColumn);
             this.panelStaticSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelStaticSettings.Location = new System.Drawing.Point(3, 140);
             this.panelStaticSettings.Name = "panelStaticSettings";
             this.panelStaticSettings.Size = new System.Drawing.Size(381, 231);
             this.panelStaticSettings.TabIndex = 0;
             this.panelStaticSettings.SizeChanged += new System.EventHandler(this.panelStaticSettings_SizeChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Key column:";
+            // 
+            // buttonLeft
+            // 
+            this.buttonLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLeft.Location = new System.Drawing.Point(169, 96);
+            this.buttonLeft.Name = "buttonLeft";
+            this.buttonLeft.Size = new System.Drawing.Size(43, 23);
+            this.buttonLeft.TabIndex = 5;
+            this.buttonLeft.Text = "<";
+            this.buttonLeft.UseVisualStyleBackColor = true;
+            // 
+            // buttonRight
+            // 
+            this.buttonRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRight.Location = new System.Drawing.Point(169, 67);
+            this.buttonRight.Name = "buttonRight";
+            this.buttonRight.Size = new System.Drawing.Size(43, 23);
+            this.buttonRight.TabIndex = 4;
+            this.buttonRight.Text = ">";
+            this.buttonRight.UseVisualStyleBackColor = true;
             // 
             // listBoxAll
             // 
@@ -118,16 +152,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Data columns:";
             // 
-            // comboBox1
+            // comboBoxKeyColumn
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxKeyColumn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(74, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(304, 21);
-            this.comboBox1.TabIndex = 0;
+            this.comboBoxKeyColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxKeyColumn.FormattingEnabled = true;
+            this.comboBoxKeyColumn.Location = new System.Drawing.Point(74, 6);
+            this.comboBoxKeyColumn.Name = "comboBoxKeyColumn";
+            this.comboBoxKeyColumn.Size = new System.Drawing.Size(304, 21);
+            this.comboBoxKeyColumn.TabIndex = 0;
             // 
             // panelVariableSettings
             // 
@@ -136,26 +170,6 @@
             this.panelVariableSettings.Name = "panelVariableSettings";
             this.panelVariableSettings.Size = new System.Drawing.Size(381, 124);
             this.panelVariableSettings.TabIndex = 0;
-            // 
-            // buttonLeft
-            // 
-            this.buttonLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLeft.Location = new System.Drawing.Point(169, 96);
-            this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(43, 23);
-            this.buttonLeft.TabIndex = 5;
-            this.buttonLeft.Text = "<";
-            this.buttonLeft.UseVisualStyleBackColor = true;
-            // 
-            // buttonRight
-            // 
-            this.buttonRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRight.Location = new System.Drawing.Point(169, 67);
-            this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(43, 23);
-            this.buttonRight.TabIndex = 4;
-            this.buttonRight.Text = ">";
-            this.buttonRight.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -166,19 +180,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Data source:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Key column:";
-            // 
-            // adapterListSourceBindingSource
-            // 
-            this.adapterListSourceBindingSource.DataSource = typeof(Paladyne_differ.AdapterListSource);
-            // 
             // DataSourceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,10 +189,11 @@
             this.Controls.Add(this.comboBoxDataSurce);
             this.Name = "DataSourceControl";
             this.Size = new System.Drawing.Size(396, 407);
+            this.Load += new System.EventHandler(this.DataSourceControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).EndInit();
             this.groupBox.ResumeLayout(false);
             this.panelStaticSettings.ResumeLayout(false);
             this.panelStaticSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.adapterListSourceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,7 +207,7 @@
         private System.Windows.Forms.ListBox listBoxAll;
         private System.Windows.Forms.ListBox listBoxComparing;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxKeyColumn;
         private System.Windows.Forms.Panel panelVariableSettings;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;

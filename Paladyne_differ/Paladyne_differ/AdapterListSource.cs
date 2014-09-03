@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Paladyne_differ
 {
@@ -16,22 +17,22 @@ namespace Paladyne_differ
             get { return true; }
         }
 
-        static Tuple<TypeInfo, string>[] adapters;
+        IDataAdapter[] adapters;
 
-        static AdapterListSource()
+        public AdapterListSource()
         {
             var baseDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 
             adapters = Directory.GetFiles(baseDir, "*.dll").
                 SelectMany(
                     file => System.Reflection.Assembly.LoadFrom(file).DefinedTypes.
-                    Where(type => type.ImplementedInterfaces.Contains(typeof(IDataAdapter)) && type.GetCustomAttribute<AdapterDisplayNameAttribute>() != null)).
-                Select( typeInfo => new Tuple<TypeInfo, string>(typeInfo, typeInfo.GetCustomAttribute<AdapterDisplayNameAttribute>().Name)).ToArray();
+                    Where(type => type.ImplementedInterfaces.Contains(typeof(IDataAdapter)))).
+                Select(typeInfo => Activator.CreateInstance(typeInfo.UnderlyingSystemType) as IDataAdapter).ToArray();
         }
 
         public System.Collections.IList GetList()
-        {
-            return adapters.Select(adapter => adapter.Item2).ToArray();
+        {           
+            return adapters;
         }
     }
 }
