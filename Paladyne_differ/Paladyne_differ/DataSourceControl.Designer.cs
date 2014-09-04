@@ -57,7 +57,7 @@
             this.comboBoxDataSurce.Location = new System.Drawing.Point(77, 3);
             this.comboBoxDataSurce.Name = "comboBoxDataSurce";
             this.comboBoxDataSurce.Size = new System.Drawing.Size(316, 21);
-            this.comboBoxDataSurce.TabIndex = 1;
+            this.comboBoxDataSurce.TabIndex = 0;
             this.comboBoxDataSurce.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataSurce_SelectedIndexChanged);
             // 
             // adapterListSourceBindingSource
@@ -112,6 +112,7 @@
             this.buttonLeft.TabIndex = 5;
             this.buttonLeft.Text = "<";
             this.buttonLeft.UseVisualStyleBackColor = true;
+            this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
             // 
             // buttonRight
             // 
@@ -122,6 +123,7 @@
             this.buttonRight.TabIndex = 4;
             this.buttonRight.Text = ">";
             this.buttonRight.UseVisualStyleBackColor = true;
+            this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
             // 
             // listBoxAll
             // 
@@ -141,12 +143,12 @@
             this.listBoxComparing.Location = new System.Drawing.Point(218, 56);
             this.listBoxComparing.Name = "listBoxComparing";
             this.listBoxComparing.Size = new System.Drawing.Size(160, 173);
-            this.listBoxComparing.TabIndex = 2;
+            this.listBoxComparing.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 30);
+            this.label1.Location = new System.Drawing.Point(3, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 1;
@@ -161,7 +163,7 @@
             this.comboBoxKeyColumn.Location = new System.Drawing.Point(74, 6);
             this.comboBoxKeyColumn.Name = "comboBoxKeyColumn";
             this.comboBoxKeyColumn.Size = new System.Drawing.Size(304, 21);
-            this.comboBoxKeyColumn.TabIndex = 0;
+            this.comboBoxKeyColumn.TabIndex = 2;
             // 
             // panelVariableSettings
             // 

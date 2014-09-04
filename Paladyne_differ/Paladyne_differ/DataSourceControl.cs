@@ -46,6 +46,7 @@ namespace Paladyne_differ
             groupBox.Text = adapter.ToString() + " data source settings";
 
             ctrl.Dock = DockStyle.Fill;
+            ctrl.TabIndex = 1;
             adapter.SettingsApplied += adapter_SettingsApplied;
         }
 
@@ -60,6 +61,17 @@ namespace Paladyne_differ
         private void DataSourceControl_Load(object sender, EventArgs e)
         {
             UpdateVariablePanel(comboBoxDataSurce);
+        }
+
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            if (!listBoxComparing.Items.Contains(listBoxAll.SelectedItem))
+                listBoxComparing.Items.Add(listBoxAll.SelectedItem);
+        }
+
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            listBoxComparing.Items.Remove(listBoxComparing.SelectedItem);
         }
     }
 }

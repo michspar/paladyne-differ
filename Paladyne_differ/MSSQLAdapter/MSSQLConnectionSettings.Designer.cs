@@ -137,7 +137,7 @@
             this.buttonApply.Location = new System.Drawing.Point(438, 155);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(75, 23);
-            this.buttonApply.TabIndex = 9;
+            this.buttonApply.TabIndex = 11;
             this.buttonApply.Text = "Apply";
             this.buttonApply.UseVisualStyleBackColor = true;
             this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
