@@ -50,11 +50,16 @@ namespace Paladyne_differ
             adapter.SettingsApplied += adapter_SettingsApplied;
         }
 
+        public DataTable data { get; private set; }
+
         void adapter_SettingsApplied(object sender, DataTableEventArgs e)
         {
-            var Columns = e.Table.Columns.OfType<DataColumn>().Select(col => col.Caption);
+            data = e.Table;
+
+            var Columns = data.Columns.OfType<DataColumn>();
 
             comboBoxKeyColumn.DataSource = Columns.ToArray();
+            listBoxAll.DisplayMember = listBoxComparing.DisplayMember = comboBoxKeyColumn.DisplayMember = "ColumnName";
             listBoxAll.DataSource = Columns.ToArray();
         }
 

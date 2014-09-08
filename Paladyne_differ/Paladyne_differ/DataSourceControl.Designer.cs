@@ -207,14 +207,14 @@
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Panel panelStaticSettings;
         private System.Windows.Forms.ListBox listBoxAll;
-        private System.Windows.Forms.ListBox listBoxComparing;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxKeyColumn;
         private System.Windows.Forms.Panel panelVariableSettings;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.BindingSource adapterListSourceBindingSource;
+        public System.Windows.Forms.ListBox listBoxComparing;
+        public System.Windows.Forms.ComboBox comboBoxKeyColumn;
     }
 }

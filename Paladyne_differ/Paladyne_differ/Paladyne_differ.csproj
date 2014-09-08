@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdapterListSource.cs" />
+    <Compile Include="ComparedRow.cs" />
+    <Compile Include="CompareProgressEventArgs.cs" />
+    <Compile Include="DataComparer.cs" />
     <Compile Include="DataSourceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

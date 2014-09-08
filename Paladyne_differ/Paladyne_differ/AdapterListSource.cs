@@ -21,7 +21,7 @@ namespace Paladyne_differ
 
         public AdapterListSource()
         {
-            var baseDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            var baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             adapters = Directory.GetFiles(baseDir, "*.dll").
                 SelectMany(
