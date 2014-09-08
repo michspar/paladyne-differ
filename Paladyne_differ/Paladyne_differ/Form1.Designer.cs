@@ -28,16 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Matched identical", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Matched partially", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Unique left", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Unique right", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageDataSources = new System.Windows.Forms.TabPage();
             this.buttonCmp = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageResults = new System.Windows.Forms.TabPage();
+            this.listView = new System.Windows.Forms.ListView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataSourceControlRight = new Paladyne_differ.DataSourceControl();
             this.dataSourceControlLeft = new Paladyne_differ.DataSourceControl();
             this.tabControl.SuspendLayout();
             this.tabPageDataSources.SuspendLayout();
+            this.tabPageResults.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tabPageDataSources);
-            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPageResults);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -79,20 +86,45 @@
             this.buttonCmp.UseVisualStyleBackColor = true;
             this.buttonCmp.Click += new System.EventHandler(this.buttonCmp_Click);
             // 
-            // tabPage2
+            // tabPageResults
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(695, 506);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageResults.Controls.Add(this.listView);
+            this.tabPageResults.Location = new System.Drawing.Point(4, 22);
+            this.tabPageResults.Name = "tabPageResults";
+            this.tabPageResults.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageResults.Size = new System.Drawing.Size(695, 506);
+            this.tabPageResults.TabIndex = 1;
+            this.tabPageResults.Text = "Results";
+            this.tabPageResults.UseVisualStyleBackColor = true;
+            // 
+            // listView
+            // 
+            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            listViewGroup1.Header = "Matched identical";
+            listViewGroup1.Name = "Identical";
+            listViewGroup2.Header = "Matched partially";
+            listViewGroup2.Name = "Partial";
+            listViewGroup3.Header = "Unique left";
+            listViewGroup3.Name = "UniqueLeft";
+            listViewGroup4.Header = "Unique right";
+            listViewGroup4.Name = "UniqueRight";
+            this.listView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView.Location = new System.Drawing.Point(3, 3);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(689, 500);
+            this.listView.TabIndex = 0;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar});
+            this.toolStripProgressBar,
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 530);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(703, 22);
@@ -102,7 +134,14 @@
             // toolStripProgressBar
             // 
             this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar.Size = new System.Drawing.Size(600, 16);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(12, 17);
+            this.toolStripStatusLabel1.Text = "x";
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // dataSourceControlRight
             // 
@@ -133,6 +172,7 @@
             this.Text = "Form1";
             this.tabControl.ResumeLayout(false);
             this.tabPageDataSources.ResumeLayout(false);
+            this.tabPageResults.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -144,12 +184,14 @@
 
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageDataSources;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageResults;
         private System.Windows.Forms.Button buttonCmp;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private DataSourceControl dataSourceControlLeft;
         private DataSourceControl dataSourceControlRight;
+        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

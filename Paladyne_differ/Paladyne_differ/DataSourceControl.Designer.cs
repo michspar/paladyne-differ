@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBoxDataSurce = new System.Windows.Forms.ComboBox();
+            this.comboBoxDataSource = new System.Windows.Forms.ComboBox();
             this.adapterListSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.panelStaticSettings = new System.Windows.Forms.Panel();
@@ -47,18 +47,18 @@
             this.panelStaticSettings.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBoxDataSurce
+            // comboBoxDataSource
             // 
-            this.comboBoxDataSurce.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxDataSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxDataSurce.DataSource = this.adapterListSourceBindingSource;
-            this.comboBoxDataSurce.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDataSurce.FormattingEnabled = true;
-            this.comboBoxDataSurce.Location = new System.Drawing.Point(77, 3);
-            this.comboBoxDataSurce.Name = "comboBoxDataSurce";
-            this.comboBoxDataSurce.Size = new System.Drawing.Size(316, 21);
-            this.comboBoxDataSurce.TabIndex = 0;
-            this.comboBoxDataSurce.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataSurce_SelectedIndexChanged);
+            this.comboBoxDataSource.DataSource = this.adapterListSourceBindingSource;
+            this.comboBoxDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDataSource.FormattingEnabled = true;
+            this.comboBoxDataSource.Location = new System.Drawing.Point(77, 3);
+            this.comboBoxDataSource.Name = "comboBoxDataSource";
+            this.comboBoxDataSource.Size = new System.Drawing.Size(316, 21);
+            this.comboBoxDataSource.TabIndex = 0;
+            this.comboBoxDataSource.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataSurce_SelectedIndexChanged);
             // 
             // adapterListSourceBindingSource
             // 
@@ -164,6 +164,7 @@
             this.comboBoxKeyColumn.Name = "comboBoxKeyColumn";
             this.comboBoxKeyColumn.Size = new System.Drawing.Size(304, 21);
             this.comboBoxKeyColumn.TabIndex = 2;
+            this.comboBoxKeyColumn.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyColumn_SelectedIndexChanged);
             // 
             // panelVariableSettings
             // 
@@ -188,7 +189,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox);
-            this.Controls.Add(this.comboBoxDataSurce);
+            this.Controls.Add(this.comboBoxDataSource);
             this.Name = "DataSourceControl";
             this.Size = new System.Drawing.Size(396, 407);
             this.Load += new System.EventHandler(this.DataSourceControl_Load);
@@ -203,7 +204,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxDataSurce;
+        private System.Windows.Forms.ComboBox comboBoxDataSource;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Panel panelStaticSettings;
         private System.Windows.Forms.ListBox listBoxAll;

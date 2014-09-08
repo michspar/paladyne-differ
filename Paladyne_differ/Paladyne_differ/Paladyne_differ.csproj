@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdapterListSource.cs" />
-    <Compile Include="ComparedRow.cs" />
     <Compile Include="CompareProgressEventArgs.cs" />
+    <Compile Include="ComparisonResult.cs" />
     <Compile Include="DataComparer.cs" />
     <Compile Include="DataSourceControl.cs">
       <SubType>UserControl</SubType>
@@ -61,6 +61,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IDataAdapter.cs" />
+    <Compile Include="ISettingsChandedInformer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DataSourceControl.resx">

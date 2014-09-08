@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Paladyne_differ
 {
-    class ComparedRow
+    public interface ISettingsChandedInformer
     {
-        public List<string> Same = new List<string>();
+        event EventHandler SettingsChanged;
     }
 }

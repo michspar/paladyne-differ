@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -27,28 +28,26 @@ namespace Paladyne_differ
                 tmp(this, new CompareProgressEventArgs(progress));
         }
 
-        public void Compare(int keyColumnLeft, int[] columnsLeft, int keyColumnRight, int[] columnsRight)
+        public ComparationResult Compare(int keyColumnLeft, int[] columnsLeft, int keyColumnRight, int[] columnsRight, BackgroundWorker bg)
         {
             var n = dataTableLeft.Rows.Count;
-            var matched = new List<string[]>();
-            var partiallyMatched = new List<string[][]>();
+            var rval = new ComparationResult();
 
-            for (var iLeft = 0; iLeft < n; iLeft++)
+            for (int iLeft = 0, iProgress = 0; iLeft < dataTableLeft.Rows.Count && !bg.CancellationPending; iLeft++, iProgress++)
             {
-                for (var iRight = 0; iRight < dataTableRight.Rows.Count; iRight++)
+                for (var iRight = 0; iRight < dataTableRight.Rows.Count && !bg.CancellationPending; iRight++)
                     if (string.Format("{0}", dataTableLeft.Rows[iLeft][keyColumnLeft]) == string.Format("{0}", dataTableRight.Rows[iRight][keyColumnRight]))
                     {
                         var right = dataTableRight.Rows[iRight];
                         var left = dataTableLeft.Rows[iLeft];
 
                         if (RowsAreMatching(left, right, columnsLeft, columnsRight))
-                            matched.Add(left.ItemArray.Select(item => string.Format("{0}", item)).ToArray());
+                            rval.Matched.Add(left.ItemArray.Select(item => string.Format("{0}", item)).ToArray());
                         else
                         {
-                            var matchedRows = new[] {
-                                left.ItemArray.Select(item => string.Format("{0}", item)).ToArray(), right.ItemArray.Select(item => string.Format("{0}", item)).ToArray() };
+                            var matchedRows = new KeyValuePair<string[], string[]>(SelectColumns(left, keyColumnLeft, columnsLeft), SelectColumns(right, keyColumnRight, columnsRight));
 
-                            partiallyMatched.Add(matchedRows);
+                            rval.PartiallyMatched.Add(matchedRows);
                         }
 
                         dataTableLeft.Rows.RemoveAt(iLeft--);
@@ -57,14 +56,29 @@ namespace Paladyne_differ
                         break;
                     }
 
-                OnProgressChanged(iLeft * 100 / n);
-
-                n = dataTableLeft.Rows.Count;
+                OnProgressChanged(iProgress * 100 / n);
             }
 
-            var unique = dataTableLeft.Rows.OfType<DataRow>().Zip(dataTableRight.Rows.OfType<DataRow>(), (a, b) => new[] { a.ItemArray, b.ItemArray }).ToList();
+            dataTableLeft.
+            Rows.
+            OfType<DataRow>().
+            ToList().
+            ForEach(row => rval.UniqueLeft.Add(SelectColumns(row, keyColumnLeft, columnsLeft)));
 
-            OnProgressChanged(100);
+            dataTableRight.
+            Rows.
+            OfType<DataRow>().
+            ToList().
+            ForEach(row => rval.UniqueRight.Add(SelectColumns(row, keyColumnLeft, columnsLeft)));
+
+            OnProgressChanged(bg.CancellationPending ? 0 : 100);
+
+            return rval;
+        }
+
+        private string[] SelectColumns(DataRow left, int keyCol, int[] columnsLeft)
+        {
+            return new [] { string.Format("{0}", left[keyCol]) }.Concat(columnsLeft.Select(col => string.Format("{0}", left[col]))).ToArray();
         }
 
         private bool RowsAreMatching(DataRow left, DataRow right, int[] columnsLeft, int[] columnsRight)

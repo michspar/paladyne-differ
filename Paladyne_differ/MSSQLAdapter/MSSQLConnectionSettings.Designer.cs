@@ -59,6 +59,7 @@
             this.textBoxServer.Name = "textBoxServer";
             this.textBoxServer.Size = new System.Drawing.Size(443, 20);
             this.textBoxServer.TabIndex = 1;
+            this.textBoxServer.TextChanged += new System.EventHandler(this.OnSettingsChanged);
             this.textBoxServer.Leave += new System.EventHandler(this.textBoxServer_Leave);
             // 
             // comboBoxDB
@@ -102,6 +103,7 @@
             this.textBoxU.Name = "textBoxU";
             this.textBoxU.Size = new System.Drawing.Size(443, 20);
             this.textBoxU.TabIndex = 5;
+            this.textBoxU.TextChanged += new System.EventHandler(this.OnSettingsChanged);
             // 
             // textBoxP
             // 
@@ -112,6 +114,7 @@
             this.textBoxP.Name = "textBoxP";
             this.textBoxP.Size = new System.Drawing.Size(443, 20);
             this.textBoxP.TabIndex = 6;
+            this.textBoxP.TextChanged += new System.EventHandler(this.OnSettingsChanged);
             // 
             // label3
             // 
@@ -152,6 +155,7 @@
             this.comboBoxTables.Name = "comboBoxTables";
             this.comboBoxTables.Size = new System.Drawing.Size(443, 21);
             this.comboBoxTables.TabIndex = 10;
+            this.comboBoxTables.SelectedIndexChanged += new System.EventHandler(this.OnSettingsChanged);
             // 
             // label5
             // 

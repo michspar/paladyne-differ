@@ -48,6 +48,17 @@ namespace Paladyne_differ
             ctrl.Dock = DockStyle.Fill;
             ctrl.TabIndex = 1;
             adapter.SettingsApplied += adapter_SettingsApplied;
+            (ctrl as ISettingsChandedInformer).SettingsChanged += DataSourceControl_SettingsChanged;
+        }
+
+        void DataSourceControl_SettingsChanged(object sender, EventArgs e)
+        {
+            comboBoxKeyColumn.DataSource = null;
+            data = null;
+
+            comboBoxKeyColumn.Items.Clear();
+            listBoxAll.Items.Clear();
+            listBoxComparing.Items.Clear();
         }
 
         public DataTable data { get; private set; }
@@ -56,16 +67,15 @@ namespace Paladyne_differ
         {
             data = e.Table;
 
-            var Columns = data.Columns.OfType<DataColumn>();
+            var columns = data.Columns.OfType<DataColumn>();
 
-            comboBoxKeyColumn.DataSource = Columns.ToArray();
+            comboBoxKeyColumn.DataSource = columns.ToArray();
             listBoxAll.DisplayMember = listBoxComparing.DisplayMember = comboBoxKeyColumn.DisplayMember = "ColumnName";
-            listBoxAll.DataSource = Columns.ToArray();
         }
 
         private void DataSourceControl_Load(object sender, EventArgs e)
         {
-            UpdateVariablePanel(comboBoxDataSurce);
+            UpdateVariablePanel(comboBoxDataSource);
         }
 
         private void buttonRight_Click(object sender, EventArgs e)
@@ -77,6 +87,20 @@ namespace Paladyne_differ
         private void buttonLeft_Click(object sender, EventArgs e)
         {
             listBoxComparing.Items.Remove(listBoxComparing.SelectedItem);
+        }
+
+        private void comboBoxKeyColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBoxComparing.Items.Clear();
+            listBoxAll.Items.Clear();
+
+            var list = data.Columns.OfType<DataColumn>().ToList();
+
+            if ((sender as ComboBox).SelectedItem != null)
+                list.Remove((sender as ComboBox).SelectedItem as DataColumn);
+
+            listBoxAll.Items.AddRange(list.ToArray());
+            listBoxAll.Refresh();
         }
     }
 }
